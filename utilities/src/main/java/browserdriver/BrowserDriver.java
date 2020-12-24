@@ -39,7 +39,7 @@ public class BrowserDriver {
     public static WebDriver driver = null;
     public static String browserName = System.getProperty("browserName", "chrome");
     public static final String url = System.getProperty("url", "https://216.221.8.161/");
-    public static String os = System.getProperty("os", "mac");
+    public static String os = System.getProperty("os", "linux");
     public static String cloudPlatformName = System.getProperty("cloudPlatformName", "browserstack");
     public static final String AUTOMATE_USERNAME = System.getProperty("AUTOMATE_USERNAME","/////");
     public static final String AUTOMATE_ACCESS_KEY = System.getProperty("AUTOMATE_ACCESS_KEY", "/////");
@@ -152,6 +152,7 @@ public class BrowserDriver {
             else if(cloudPlatformName.equals("saucelab")){
                 getDriverForSauceLab();
             }
+
         }
 
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -195,6 +196,8 @@ public class BrowserDriver {
         else if(os.equals("windows")){
             System.setProperty("webdriver.chrome.driver", "../utilities/drivers/windows/chromedriver.exe");
             driver = new ChromeDriver(options);
+        } else if(os.equals("linux")) {
+            System.setProperty("webdriver.chrome.driver", "../utilities/drivers/linux/chromedriver");
         }
 
         return driver;
